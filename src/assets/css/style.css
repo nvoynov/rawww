@@ -1,0 +1,11 @@
+/* src/css/style.css */
+
+/* Core architectural asset pipeline modules injections */
+@import url("modules/base.css");
+@import url("modules/content.css"); /* Added new general content layer */
+@import url("modules/header.css");
+@import url("modules/about.css");
+@import "modules/error.css";
+
+/* Future layout components will be mounted underneath */
+/* @import url("modules/series.css"); */

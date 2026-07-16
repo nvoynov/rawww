@@ -1,0 +1,12 @@
+# compose.yaml
+
+services:
+  web:
+    build: .
+    image: rawww-engine:local
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - LANG=C.UTF-8

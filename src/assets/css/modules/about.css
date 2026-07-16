@@ -1,0 +1,78 @@
+/* src/assets/css/modules/about.css - Editorial About Page Layout */
+
+/* 1. Master Container Layout Configuration bound to the Pandoc Section Node */
+section.about-page-container {
+  display: block;
+  width: 100%;
+  max-width: 40.625rem; /* 650px / 16 — Restores the perfect reading line length */
+  margin: 2.5rem auto 0 auto; /* Centers the reading colophon on the screen */
+  padding: 0 1.5rem; 
+  box-sizing: border-box;
+}
+
+/* 2. Text Content Block Editorial Typography scoped inside the compiled section */
+section.about-page-container h1 {
+  font-weight: 400;
+  font-size: 1.1rem;       /* 17.6px — Balanced size, smaller than site logo */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 1.25rem;   /* Soft starting gap below the header line */
+  margin-bottom: 1.5625rem; 
+  text-align: center;     /* Centered to mirror the balanced site header rhythm */
+  color: #000000;
+}
+
+section.about-page-container h2 {
+  font-weight: 500;
+  font-size: 0.8125rem;  /* 13px / 16 — Subtitle weight scale */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 1.875rem;   /* Tightened to 30px — closes the gap from the previous block */
+  margin-bottom: 0.75rem; /* Tightened to 12px — pulls the title tightly to its text */
+  text-align: left;      /* Keeps technical sections strictly left-aligned */
+  color: #222222;
+  line-height: 1.4;       /* Prevents multi-line headers from blowing up vertically */
+}
+
+section.about-page-container p {
+  color: #444444;        /* Softer contrast so text steps elegantly into the background */
+  font-size: 0.875rem;   /* Strict 14px — neat and readable */
+  line-height: 1.6;      /* Standard reading line pace */
+  margin-bottom: 1.25rem; 
+  text-align: left;
+}
+
+section.about-page-container hr {
+  border: none;
+  border-top: 1px solid #eeeeee;
+  margin: 2.1875rem 0;   /* 35px / 16 */
+}
+
+/* 3. Elegant Contact/Feature List Matrix mapped to native Pandoc lists inside section */
+section.about-page-container ul {
+  padding-left: 0;
+  list-style: none;      /* Technical bullets dropped for clean look */
+  margin-top: 1.25rem;   
+  margin-bottom: 1.875rem; 
+}
+
+section.about-page-container li {
+  font-size: 0.8125rem;  /* 13px / 16 — Solid and compact size for core metadata */
+  line-height: 1.5;
+  color: #444444;
+  margin-bottom: 0.5rem; 
+}
+
+/* ==========================================================================
+   PRODUCTION RESPONSIVE MOBILE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 767px) {
+  section.about-page-container {
+    margin-top: 1.25rem;
+    padding: 0 15px;     /* Safety margins padding for mobile phone edges */
+  }
+  
+  section.about-page-container h2 {
+    margin-top: 2.5rem;
+  }
+}

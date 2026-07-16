@@ -1,0 +1,80 @@
+/* src/assets/css/modules/content.css - General Markdown Content Layout */
+
+/* src/assets/css/modules/content.css - General Markdown Content Layout */
+
+.page-main-body-content {
+  max-width: 46.875rem; /* 750px / 16 */
+  margin: 3rem auto 0 auto;
+}
+
+/* Elegant, non-aggressive header hierarchy to respect the master site title */
+.page-main-body-content h1 {
+  font-size: 1.39rem;   /* Reduced from 1.5rem to perfectly match the layout hierarchy */
+  font-weight: 300;     /* Thinner editorial character weight */
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.page-main-body-content h2 {
+  font-size: 1.2rem;    /* Reduced from 1.5rem */
+  font-weight: 500;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-main-body-content h3 {
+  font-size: 1rem;      /* Reduced from 1.2rem */
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Beautiful minimalist blockquotes */
+.page-main-body-content blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid #dddddd;
+  color: #555555;
+  font-style: italic;
+}
+
+.page-main-body-content blockquote p {
+  margin: 0;
+}
+
+/* Standard native lists formatting */
+.page-main-body-content ul, 
+.page-main-body-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-main-body-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Technical code blocks configuration for developers */
+.page-main-body-content code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  background-color: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: #333333;
+}
+
+/* Block code wraps (```bash ... ```) */
+.page-main-body-content pre {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto; /* Adds horizontal scrolling if the code line is too wide */
+  margin-bottom: 1.5rem;
+}
+
+.page-main-body-content pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  color: inherit;
+}

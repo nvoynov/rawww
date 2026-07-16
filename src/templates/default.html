@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="$if(lang)$$lang$$else$en$endif$">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Standard Primary SEO Layer -->
+  <title>$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$</title>
+  $if(description)$<meta name="description" content="$description$">$endif$
+  
+  <!-- Absolute Canonical Anchor: Prevents content duplication -->
+  <link rel="canonical" href="$if(site_base_url)$$site_base_url$$endif$$if(url_path)$$url_path$$endif$">
+  
+  <!-- Dynamic template injection channel for third-party scripts like Google Analytics -->
+  $include-before$
+
+  <!-- Branding Visual Identities Core Assets -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Path updated to match our approved Variant 2 asset structure -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <div class="site-container">
+    <header class="site-header">
+      <div class="site-title">
+        <div class="site-title-text">
+          <a href="/index.html">
+            <!-- Using our native pixel matrix favicon as a minimalist header branding glyph -->
+            <img src="/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+            RAWWW
+          </a>
+        </div>
+      </div>
+
+      <!-- Core site navigation links -->
+      <nav class="site-nav">
+        <a href="/index.html" class="nav-link">Home</a>
+        <a href="/about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main class="content-container">
+      <!-- Native Markdown text output channel compiled by Pandoc -->
+      <div class="page-main-body-content">
+        $body$
+      </div>
+
+      <!-- Pandoc native body injection channel -->
+      $include-before$
+    </main>
+
+    <footer>
+      <p>&copy; 2026 $if(author)$$author$$else$RAWWW Developer$endif$. All rights reserved.</p>
+      <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 5px;">
+        Powered by Rake and Pandoc. Clean, minimal, raw web.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

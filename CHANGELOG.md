@@ -1,0 +1,68 @@
+## [Unreleased]
+
+TODO
+
+- [ ] create the repo and push to Github
+- [ ] build and deploy the site
+
+
+## [0.1.0] - 2026-07-15
+
+Initial release
+
+``
+├── CHANGELOG.md
+├── compose.yaml
+├── copilot-prompt.md
+├── Dockerfile
+├── Gemfile
+├── lib
+│   ├── basic
+│   │   ├── alias_members.rb
+│   │   ├── callable.rb
+│   │   ├── cli_tool.rb
+│   │   └── configuration.rb
+│   ├── basic.rb
+│   ├── rawww
+│   │   ├── banner.rb
+│   │   ├── basic.rb
+│   │   ├── model
+│   │   │   ├── page.rb
+│   │   │   └── site.rb
+│   │   ├── model.rb
+│   │   ├── pandoc.rb
+│   │   └── version.rb
+│   └── rawww.rb
+├── PROMPT.md
+├── Rakefile
+├── rakelib
+│   ├── assets.rake
+│   ├── build.rake
+│   ├── deploy.rake
+│   ├── seo.rake
+│   └── serve.rake
+├── README.md
+├── src
+│   ├── 404.md
+│   ├── about.md
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── modules
+│   │   │   │   ├── about.css
+│   │   │   │   ├── base.css
+│   │   │   │   ├── content.css
+│   │   │   │   ├── error.css
+│   │   │   │   └── header.css
+│   │   │   └── style.css
+│   │   ├── images
+│   │   └── js
+│   ├── favicon.svg
+│   ├── favicon1.svg
+│   ├── index.md
+│   └── templates
+│       ├── analytics.html
+│       └── default.html
+└── www
+
+14 directories, 39 files
+```

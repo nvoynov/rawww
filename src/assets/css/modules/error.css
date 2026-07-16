@@ -1,0 +1,68 @@
+/* src/assets/css/modules/error.css - Editorial Error Page Layout */
+
+/* Target the compiled section explicitly and tightened max-width for premium editorial layout */
+section.error-page-container {
+  display: block;
+  width: 100%;
+  max-width: 31.25rem; /* Strict 500px for concise text bounding */
+  margin: 4rem auto 0 auto; /* Centers the error block and adds top margin */
+  padding: 0 1.5rem; 
+  box-sizing: border-box;
+  text-align: center; /* Center align everything for balanced negative space */
+}
+
+/* Monumental Typographic Error Statement */
+section.error-page-container h1 {
+  font-family: inherit;
+  font-size: 3.5rem;        
+  font-weight: 300;       /* Matches the signature thin weight of the logo */
+  letter-spacing: 0.15em; /* Airy, premium character tracking */
+  text-transform: uppercase;
+  color: #222222;
+  margin: 0 0 2rem 0;
+  line-height: 1;
+}
+
+/* Descriptive Error Body Text */
+section.error-page-container p {
+  color: #444444;        
+  font-size: 0.875rem;   /* Clean 14px */
+  line-height: 1.75;     /* Breathable reading line pace */
+  margin-bottom: 2.5rem; 
+  text-align: center;    /* Centers paragraph text inside the tight column */
+}
+
+/* Correct targeting for the markdown link inside the compiled paragraph/div wrapper */
+section.error-page-container .error-return-link,
+section.error-page-container p a {
+  font-size: 0.75rem;    /* 12px — Proportional to the site-nav elements */
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #444444;
+  text-decoration: none;
+  border-bottom: 1px solid #eeeeee; /* Elegant subtle text link underline */
+  padding-bottom: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+}
+
+section.error-page-container .error-return-link:hover,
+section.error-page-container p a:hover {
+  color: #000000;
+  border-color: #000000;
+}
+
+/* ==========================================================================
+   PRODUCTION RESPONSIVE MOBILE DOWNGRADE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 767px) {
+  section.error-page-container {
+    margin-top: 2rem;
+    padding: 0 15px;
+  }
+  
+  section.error-page-container h1 {
+    font-size: 2.5rem;
+  }
+}
