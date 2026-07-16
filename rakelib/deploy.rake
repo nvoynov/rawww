@@ -4,27 +4,27 @@ require 'fileutils'
 require './lib/rawww'
 
 namespace :site do
-
   desc "Deploy the compiled website to GitHub Pages"
-  task :push => :build do
+  task :push do
     puts Rawww::BANNER
-    puts "  » Preparing deployment to GitHub Pages..."
+    puts "  » Launching production deployment execution phase..."
 
-    # Automatically detect the current remote git origin URL
-    remote_url = `git config --get remote.origin.url`.strip
+    # Extract single source of truth path from our Data config instance
+    public_dir = Rawww::Config.instance.public_dir rescue 'www'
+    remote_url = `git config --get remote.origin.url`.strip rescue ''
     
     if remote_url.empty?
       puts "  [Error] No remote git origin found. Please run 'git remote add origin <url>' first."
       exit 1
     end
 
-    unless Dir.exist?(Rawww::PUBLIC_DIR)
-      puts "  [Error] Target build directory '#{Rawww::PUBLIC_DIR}' does not exist. Run rake build first."
+    unless Dir.exist?(public_dir)
+      puts "  [Error] Target build directory '#{public_dir}' does not exist."
       exit 1
     end
 
     # Navigate into the compiled output directory
-    Dir.chdir(Rawww::PUBLIC_DIR) do
+    Dir.chdir(public_dir) do
       puts "  » Initializing temporary deployment repository..."
       system("git init -b gh-pages")
       system("git config user.name 'rawww-bot'")
@@ -37,7 +37,6 @@ namespace :site do
       system("git commit -m 'Automated rawww production deployment close'")
       
       puts "  » Executing force push sequence to remote gh-pages branch..."
-      # Perform a safe force push sequence to update the live website node
       success = system("git push --force #{remote_url} gh-pages")
 
       if success
@@ -48,12 +47,26 @@ namespace :site do
       end
     end
 
-    # Clean up the hidden temporary .git metadata directory inside /www to avoid pollution
-    git_cache = File.join(Rawww::PUBLIC_DIR, '.git')
+    # Clean up the hidden temporary .git metadata directory inside public path
+    git_cache = File.join(public_dir, '.git')
     FileUtils.rm_rf(git_cache) if Dir.exist?(git_cache)
   end
 end
 
-# Expose a clean, punchy top-level shortcut task
-desc "Deploy compiled site to GitHub Pages"
-task :push => 'site:push'
+# Intercept the global shortcut call
+task :push do
+  # 1. Lock the environment into production state
+  ENV['RAWWW_PRODUCTION'] = 'true'
+  puts "  » Production environment state locked."
+  
+  # 2. FORCE CLEAN the directory to break Rake timestamp cache mechanism
+  puts "  » Flushing local compilation caches..."
+  Rake::Task['clean'].invoke
+  
+  # 3. Trigger a completely fresh, clean production build execution
+  puts "  » Triggering fresh production build..."
+  Rake::Task['build'].invoke
+  
+  # 4. Invoke the real deploy mechanism
+  Rake::Task['site:push'].invoke
+end

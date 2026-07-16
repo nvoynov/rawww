@@ -5,7 +5,7 @@ require './lib/rawww'
 
 namespace :seo do
   # Define your production root domain here
-  SITE_URL = "https://your-domain.com"
+  SITE_URL = Rawww::Config.instance.site_url
 
   desc "Generate production sitemap.xml and robots.txt rules"
   task :generate => 'site:compile' do

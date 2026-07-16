@@ -38,10 +38,29 @@ namespace :site do
 
     FileUtils.mkdir_p(File.dirname(page.destination_path))
 
+    # Determine the correct root path based on the production environment flag
+    # Access parameters safely via the Singleton instance proxy methods
+    config = Rawww::Config.instance
+
+    # Determine the correct root path based on the production environment flag
+    current_root = ENV['RAWWW_PRODUCTION'] == 'true' ? config.production_root_path : config.root_path
+
+    # Safely construct the absolute canonical URL for search engines
+    base_domain = config.site_url.chomp('/')
+    page_path = page.slug == 'index' ? "#{current_root}/" : "#{current_root}/#{page.slug}.html"
+    calculated_canonical = "#{base_domain}#{page_path}"
+
+    # Pass everything to the compiler, blending page metadata and system variables
     COMPILER.call(
       source: page.source_path,
       template: template_path,
-      destination: page.destination_path
+      destination: page.destination_path,
+      variables: page.metadata.merge(
+        'root_path' => current_root,
+        'canonical_url' => calculated_canonical,
+        'site_title' => config.title,
+        'author' => config.author
+      )
     )
     
     # Updated terminal log to explicitly show the beautiful compiled URL slug

@@ -8,16 +8,14 @@
   <title>$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$</title>
   $if(description)$<meta name="description" content="$description$">$endif$
   
-  <!-- Absolute Canonical Anchor: Prevents content duplication -->
-  <link rel="canonical" href="$if(site_base_url)$$site_base_url$$endif$$if(url_path)$$url_path$$endif$">
+  <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
+  <link rel="canonical" href="$canonical_url$">  
   
-  <!-- Dynamic template injection channel for third-party scripts like Google Analytics -->
-  $include-before$
-
   <!-- Branding Visual Identities Core Assets -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <!-- Path updated to match our approved Variant 2 asset structure -->
-  <link rel="stylesheet" href="/assets/css/style.css">
+  
+  <link rel="icon" type="image/svg+xml" href="$root_path$/favicon.svg">
+  <!-- 2. Dynamic root path injection for the master stylesheet -->
+  <link rel="stylesheet" href="$root_path$/assets/css/style.css">
 </head>
 
 <body>
@@ -25,18 +23,20 @@
     <header class="site-header">
       <div class="site-title">
         <div class="site-title-text">
-          <a href="/index.html">
-            <!-- Using our native pixel matrix favicon as a minimalist header branding glyph -->
-            <img src="/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+          <!-- 3. Dynamic root path injection for the home link -->
+          <a href="$root_path$/index.html">
+            <!-- 4. Dynamic root path injection for the header logo glyph -->
+            <img src="$root_path$/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
             RAWWW
           </a>
         </div>
       </div>
 
-      <!-- Core site navigation links -->
+      <!-- Core site navigation links with injected paths -->
       <nav class="site-nav">
-        <a href="/index.html" class="nav-link">Home</a>
-        <a href="/about.html" class="nav-link">About</a>
+        <!-- 5. Dynamic root path injection for navigation mapping -->
+        <a href="$root_path$/index.html" class="nav-link">Home</a>
+        <a href="$root_path$/about.html" class="nav-link">About</a>
       </nav>
     </header>
 

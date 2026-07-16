@@ -1,4 +1,5 @@
-require_relative '../basic'
+require_relative 'basic'
+require_relative 'config'
 
 module Rawww
 
@@ -23,8 +24,8 @@ module Rawww
         "-o", destination
       ]
 
-      # Dynamically append -V flags for every global layout variable
       variables.each do |key, value|
+        next if value.nil?
         cmd << "-V" << "#{key}=#{value}"
       end
 

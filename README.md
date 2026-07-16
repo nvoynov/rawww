@@ -1,7 +1,9 @@
 # RAWWW
 
 > Raw Markdown to WWW. Driven by Rake and Pandoc.
+>
 > **Project Origin & Evolution**
+>
 > This starter template is the refined distillation of a month-long architectural journey designing a custom photography web gallery. The codebase successfully evolved from a rigid, over-engineered Jekyll setup into a lightweight, high-utility, and fully transparent compiler powered exclusively by Ruby, Rake, and Pandoc. **RAWWW** preserves this hard-earned foundation as a production-ready springboard for future static web craft.
 
 A minimalist, high-utility static website starter kit designed for speed, clean code, and zero JS overhead. Write raw Pandoc Markdown, orchestrate with Rake, and deploy anywhere.
