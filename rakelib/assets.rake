@@ -27,12 +27,28 @@ namespace :assets do
     FileUtils.cp(t.source, t.name)
     puts "  » copy: #{t.source} -> #{t.name} [root branding]"
   end
+  
+  # Add root OG Card tracking to targets pool
+  OG_SRC = 'src/og-card.svg'
+  OG_TRG = File.join(Rawww::PUBLIC_DIR, 'og-card.svg')
+
+  # Dedicated rule for transferring the root Open Graph social banner
+  file OG_TRG => OG_SRC do |t|
+    FileUtils.mkdir_p(File.dirname(t.name))
+    FileUtils.cp(t.source, t.name)
+    puts "  » copy: #{t.source} -> #{t.name} [social branding]"
+  end
+
+  # Update the main copy task dependencies
+  desc "Copy static assets (CSS, JS, images, favicon, og-card) to the build directory"
+  task :copy => (ASSET_TARGETS + [FAVICON_TRG, OG_TRG])
 
   desc "Clean compiled assets"
   task :clean do
     target_dir = File.join(Rawww::PUBLIC_DIR, 'assets')
     FileUtils.rm_rf(target_dir) if Dir.exist?(target_dir)
     File.delete(FAVICON_TRG) if File.exist?(FAVICON_TRG)
+    File.delete(OG_TRG) if File.exist?(OG_TRG)
     puts "  » cleaned: assets and branding nodes"
   end
 end

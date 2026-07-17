@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    /* Default light theme: solid dark pixels */
+    .pixel { fill: #1a1a1a; }
+
+    /* Dark theme override: bright pixels */
+    @media (prefers-color-scheme: dark) {
+      .pixel { fill: #f5f5f5; }
+    }
+  </style>
+
+  <!-- Digital 'R' structured from raw pixel exposure steps -->
+  <path class="pixel" d="M 6,4 H 20 V 14 H 12 V 28 H 6 Z M 12,14 H 24 V 4 H 20 V 10 H 12 Z M 12,14 H 18 L 24,28 H 18 L 12,16 Z"/>
+</svg>

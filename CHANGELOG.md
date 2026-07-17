@@ -1,10 +1,17 @@
 ## [Unreleased]
 
+## 2026-07-16
+
 TODO
 
-- [ ] create the repo and push to Github
-- [ ] build and deploy the site
+- [ ] compile `or-card.svg` to png on Ubuntu
+      some problems with fonts on MacOS
+- [ ] deploy with proper og-card!
 
+- added `src/og-card.svg`
+- fixed "Untitled |" thing
+- cleaned extra `/src/*.svg`
+- copied `svg` into `/assets`
 
 ## [0.1.0] - 2026-07-15
 

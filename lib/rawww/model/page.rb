@@ -65,14 +65,15 @@ module Rawww
       # A lightweight, zero-dependency parser for core document configuration.
       def parse_front_matter
         content = File.read(@source_path)
-        data = { title: 'Untitled', layout: 'default', slug: nil }
+        data = { layout: 'default', slug: nil }
 
         if content =~ /\A---(.*?)---/m
           front_matter_block = $1
 
           if (title_match = front_matter_block.match(/title:\s*(.*)/))
             raw_title = title_match.captures.first
-            data[:title] = raw_title ? raw_title.strip : 'Untitled'
+            # data[:title] = raw_title ? raw_title.strip : 'Untitled'
+            data[:title] = raw_title if raw_title
           end
 
           if (layout_match = front_matter_block.match(/layout:\s*(.*)/))

@@ -11,8 +11,15 @@
   <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
   <link rel="canonical" href="$canonical_url$">  
   
-  <!-- Branding Visual Identities Core Assets -->
+  <!-- Open Graph / Facebook Production Layer -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="$canonical_url$">
+  <meta property="og:title" content="$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$">
+  <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
+  <!-- Clean absolute path pointing straight to the root production banner -->
+  <meta property="og:image" content="$site_url$$root_path$/og-card.svg">
   
+  <!-- Branding Visual Identities Core Assets -->
   <link rel="icon" type="image/svg+xml" href="$root_path$/favicon.svg">
   <!-- 2. Dynamic root path injection for the master stylesheet -->
   <link rel="stylesheet" href="$root_path$/assets/css/style.css">

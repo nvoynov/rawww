@@ -67,14 +67,3 @@ When your project grows beyond simple static pages, you can easily extend `rawww
 * **Asset Optimization**: Integrate custom scripts to copy, compress, and optimize media folders (like photography assets) directly into the `:build` task chain.
 * **AI Copilot**: Use the pre-configured Gemini prompt template located in `.github/copilot-prompt.md` to teach any LLM your exact automation workflow for quick feature expansion.
 
-```
-src
-├── assets/
-│   ├── css/          # Стили (base.css, modules/)
-│   ├── js/           # Скрипты
-│   └── images/       # Фотографии и графика
-├── templates/
-│   └── default.html  # Шаблон оформления Pandoc
-├── index.md
-└── about.md  
-```
