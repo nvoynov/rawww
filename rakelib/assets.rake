@@ -29,8 +29,8 @@ namespace :assets do
   end
   
   # Add root OG Card tracking to targets pool
-  OG_SRC = 'src/og-card.svg'
-  OG_TRG = File.join(Rawww::PUBLIC_DIR, 'og-card.svg')
+  OG_SRC = 'src/og-card.png'
+  OG_TRG = File.join(Rawww::PUBLIC_DIR, 'og-card.png')
 
   # Dedicated rule for transferring the root Open Graph social banner
   file OG_TRG => OG_SRC do |t|

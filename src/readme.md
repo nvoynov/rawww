@@ -1,3 +1,10 @@
+---
+title: README
+layout: default
+---
+
+::: {.page-main-body-content}
+
 # RAWWW
 
 > Raw Markdown to WWW. Driven by Rake and Pandoc.
@@ -114,3 +121,6 @@ include-before: src/templates/analytics.html
 This specific page is now dynamically rendering your tracking layer, while other nodes remain completely clean.
 :::
 ```
+
+
+:::

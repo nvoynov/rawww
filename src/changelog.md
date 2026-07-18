@@ -1,3 +1,10 @@
+---
+title: CHANGELOG
+layout: default
+---
+
+::: {.page-main-body-content}
+
 ## [Unreleased]
 
 ## [0.1.0] - 2026-07-18
@@ -72,3 +79,6 @@ Initial release
 
 14 directories, 39 files
 ```
+
+
+:::

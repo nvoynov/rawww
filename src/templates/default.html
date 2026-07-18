@@ -17,8 +17,9 @@
   <meta property="og:title" content="$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$">
   <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
   <!-- Clean absolute path pointing straight to the root production banner -->
-  <meta property="og:image" content="$site_url$$root_path$/og-card.svg">
-  
+  <!-- <meta property="og:image" content="$site_url$$root_path$/og-card.svg"> -->
+  <meta property="og:image" content="$site_url$$root_path$/og-card.png">
+
   <!-- Branding Visual Identities Core Assets -->
   <link rel="icon" type="image/svg+xml" href="$root_path$/favicon.svg">
   <!-- 2. Dynamic root path injection for the master stylesheet -->
@@ -43,6 +44,8 @@
       <nav class="site-nav">
         <!-- 5. Dynamic root path injection for navigation mapping -->
         <a href="$root_path$/index.html" class="nav-link">Home</a>
+        <a href="$root_path$/readme.html" class="nav-link">Readme</a>
+        <a href="$root_path$/changelog.html" class="nav-link">Changelog</a>
         <a href="$root_path$/about.html" class="nav-link">About</a>
       </nav>
     </header>
