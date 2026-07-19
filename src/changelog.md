@@ -7,6 +7,11 @@ layout: default
 
 ## [Unreleased]
 
+## [Unreleased] - 2026-07-19
+
+- sitemap generator moved to `build/sitemap.rb`
+- manifest page generator extracted into `build/page.rb`
+
 ## [0.1.0] - 2026-07-18
 
 - changed `src/about.md` for prividing banner

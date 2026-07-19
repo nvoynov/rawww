@@ -14,28 +14,8 @@ namespace :seo do
     robots_path = File.join(Rawww::PUBLIC_DIR, "robots.txt")
 
     puts "  » Generating SEO search index nodes..."
-
-    # 1. Build the sitemap.xml structure
-    xml_content = []
-    xml_content << '<?xml version="1.0" encoding="UTF-8"?>'
-    xml_content << '<urlset xmlns="http://sitemaps.org">'
-
-    site.pages.each do |page|
-      # Handle special mapping for the main index page
-      page_url = page.slug == "index" ? "#{SITE_URL}/" : "#{SITE_URL}/#{page.slug}.html"
-      
-      xml_content << '  <url>'
-      xml_content << "    <loc>#{page_url}</loc>"
-      xml_content << "    <lastmod>#{page.date.strftime('%Y-%m-%d')}</lastmod>"
-      xml_content << "    <changefreq>#{page.change_frequency}</changefreq>"
-      xml_content << '  </url>'
-    end
-
-    xml_content << '</urlset>'
-
-    # Save sitemap file securely
     FileUtils.mkdir_p(Rawww::PUBLIC_DIR)
-    File.write(sitemap_path, xml_content.join("\n"))
+    File.write(sitemap_path, Rawww::BuildSitemap.call(site))
     puts "  » generated: /sitemap.xml [#{site.pages.size} pages linked]"
 
     # 2. Build the robots.txt structure pointing to the sitemap

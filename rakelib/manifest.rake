@@ -9,7 +9,8 @@ namespace :manifest do
   desc "Automatically stage core repository documents into the website source directory"
   task :sync do
     puts "  » Manifest processing: Syncing repository documents..."
-
+    builder = Rawww::BuildPage.new
+    
     DOC_SOURCES.each do |filename|
       next unless File.exist?(filename)
 
@@ -24,18 +25,7 @@ namespace :manifest do
       original_content = File.read(filename)
 
       # Build the final document wrapping it cleanly inside our Pandoc grid class
-      packaged_content = <<~MARKDOWN
-        ---
-        title: #{page_title}
-        layout: default
-        ---
-        
-        ::: {.page-main-body-content}
-        
-        #{original_content}
-        
-        :::
-      MARKDOWN
+      packaged_content = builder.call(page_title, original_content)
 
       # Write onto disk safely
       FileUtils.mkdir_p('src')
