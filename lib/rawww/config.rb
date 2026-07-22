@@ -7,7 +7,7 @@ module Rawww
     # Define absolute clean default values using standard keyword arguments fallback layout
     def initialize(
       title: "RAWWW Engine", 
-      author: "Nikolay Voynov", 
+      author: "Author", 
       root_path: "", 
       production_root_path: "/rawww", 
       site_url: "https://github.io"
@@ -24,7 +24,7 @@ module Rawww
 
   # The active operational Configuration proxy entity
   class Config < ::Basic::Configuration
-    # Automatically manages config initialization mapping onto '_config.yml' target file
+    # Automatically manages config initialization mapping onto 'rawww.yml'
     manage ConfigSchema
   end
 end

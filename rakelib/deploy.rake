@@ -7,6 +7,7 @@ namespace :site do
   desc "Deploy the compiled website to GitHub Pages"
   task :push do
     puts Rawww::BANNER
+    puts Rawww.environment_info
     puts "  » Launching production deployment execution phase..."
 
     # Extract single source of truth path from our Data config instance

@@ -1,5 +1,17 @@
 ## [Unreleased]
 
+## [Unreleased] - 2026-07-22
+
+- added `doc/*.md`
+- moved `favicon.svg` and `og-card.png` moved to `src/assets/`, simplyfying `assets.rake` 
+- fixed `src/default.html` for using `rawww.yml` settings
+- fixed `src/index` for providing relative og-card.png path
+- added pragmatic caching
+  - designed `Build::CacheManifest`
+  - added `src/sw.js` for managing
+  - changed `build.rake` accordingly
+- added `#compile_pandoc_extra_args` Pandoc compiler (see `build.rake`) 
+
 ## [Unreleased] - 2026-07-19
 
 - sitemap generator moved to `build/sitemap.rb`

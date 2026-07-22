@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Standard Primary SEO Layer -->
-  <title>$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$</title>
+  <title>$if(title)$$title$ | $site_title$$else$$site_title$$endif$</title>
   $if(description)$<meta name="description" content="$description$">$endif$
   
   <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
@@ -14,14 +14,14 @@
   <!-- Open Graph / Facebook Production Layer -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="$canonical_url$">
-  <meta property="og:title" content="$if(title)$$title$ | RAWWW Engine$else$RAWWW Static Site$endif$">
+  <meta property="og:title" content="$if(title)$$title$ | $site_title$$else$$site_title$$endif$">
   <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
   <!-- Clean absolute path pointing straight to the root production banner -->
   <!-- <meta property="og:image" content="$site_url$$root_path$/og-card.svg"> -->
-  <meta property="og:image" content="$site_url$$root_path$/og-card.png">
+  <meta property="og:image" content="$site_url$$root_path$/assets/og-card.png">
 
   <!-- Branding Visual Identities Core Assets -->
-  <link rel="icon" type="image/svg+xml" href="$root_path$/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="$root_path$/assets/favicon.svg">
   <!-- 2. Dynamic root path injection for the master stylesheet -->
   <link rel="stylesheet" href="$root_path$/assets/css/style.css">
 </head>
@@ -34,7 +34,7 @@
           <!-- 3. Dynamic root path injection for the home link -->
           <a href="$root_path$/index.html">
             <!-- 4. Dynamic root path injection for the header logo glyph -->
-            <img src="$root_path$/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+            <img src="$root_path$/assets/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
             RAWWW
           </a>
         </div>
