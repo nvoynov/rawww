@@ -1,6 +1,6 @@
 ## [Unreleased]
 
-## [Unreleased] - 2026-07-22
+## [0.2.0] - 2026-07-22
 
 - added `doc/*.md`
 - moved `favicon.svg` and `og-card.png` moved to `src/assets/`, simplyfying `assets.rake` 
