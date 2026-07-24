@@ -103,5 +103,5 @@ namespace :site do
 end
 
 # Reset top-level build chain pipelines
-task :build => ['assets:copy', 'site:build',  'seo:generate']
-task :clean => ['site:clean', 'manifest:clean', 'assets:clean', 'seo:clean']
+task :build => ['css:build', 'assets:copy', 'site:build',  'seo:generate']
+task :clean => ['site:clean', 'manifest:clean', 'assets:clean', 'seo:clean', 'css:clean']

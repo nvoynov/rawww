@@ -17,7 +17,6 @@ module Rawww
           .glob("#{Rawww::PUBLIC_DIR}/**/*")
           .select{ File.file?(it)  }
           .reject{ it =~ /\.html$/ }
-          .tap{ pp it }
       
         production_files.each do |file|
           # Convert absolute/relative disk paths straight to pristine

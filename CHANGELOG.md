@@ -1,5 +1,17 @@
 ## [Unreleased]
 
+TODO:
+
+- [ ] design `js.rake` to minificate JSs
+- [ ] change JSON.pretty_generate for cache manifests
+
+
+## [0.2.2] - 2026-07-24
+
+- added `css.rake` that compiles and minificates `style.css`
+- updated `assets.rake` for skipping copying css folder
+- updated `sw.js` by removing css/modules for pre-cache
+
 ## [0.2.1] - 2026-07-24
 
 - added Config `#production?` and `#site_root`

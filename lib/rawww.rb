@@ -15,6 +15,7 @@ module Rawww
 
   # Single source of truth for the production output directory
   PUBLIC_DIR = "www"
+  SOURCE_DIR = "src"
 end
 
 pp Rawww.constants if __FILE__ == $0

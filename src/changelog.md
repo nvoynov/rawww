@@ -7,8 +7,16 @@ layout: default
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-07-25
+
+- [ ] added `css.rake` that compiles and minificates `style.css`
+- [ ] changed `assets.rake` for skipping copying css folder
+
+
+## [0.2.1] - 2026-07-24
+
 - added Config `#production?` and `#site_root`
-- optimized `build.rake` usign the methodds above
+- optimized `build.rake` usign the methods above
 
 ## [0.2.0] - 2026-07-22
 

@@ -17,12 +17,7 @@ self.addEventListener('install', (event) => {
     getAbsPath('/'),
     getAbsPath('/index.html'),
     getAbsPath('/cache_manifest.json'),
-    getAbsPath('/assets/css/style.css'),
-    getAbsPath('/assets/css/modules/base.css'),
-    getAbsPath('/assets/css/modules/content.css'),
-    getAbsPath('/assets/css/modules/header.css'),
-    getAbsPath('/assets/css/modules/about.css'),
-    getAbsPath('/assets/css/modules/error.css')
+    getAbsPath('/assets/css/style.css')
   ];
 
   event.waitUntil(
