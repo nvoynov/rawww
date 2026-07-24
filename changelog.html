@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Standard Primary SEO Layer -->
+  <title>CHANGELOG | RAWWW Engine</title>
+  
+  
+  <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
+  <link rel="canonical" href="https://nvoynov.github.io/rawww/changelog.html">  
+  
+  <!-- Open Graph / Facebook Production Layer -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nvoynov.github.io/rawww/changelog.html">
+  <meta property="og:title" content="CHANGELOG | RAWWW Engine">
+  <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
+  <!-- Clean absolute path pointing straight to the root production banner -->
+  <!-- <meta property="og:image" content="/rawww/og-card.svg"> -->
+  <meta property="og:image" content="/rawww/assets/og-card.png">
+
+  <!-- Branding Visual Identities Core Assets -->
+  <link rel="icon" type="image/svg+xml" href="/rawww/assets/favicon.svg">
+  <!-- 2. Dynamic root path injection for the master stylesheet -->
+  <link rel="stylesheet" href="/rawww/assets/css/style.css">
+</head>
+
+<body>
+  <div class="site-container">
+    <header class="site-header">
+      <div class="site-title">
+        <div class="site-title-text">
+          <!-- 3. Dynamic root path injection for the home link -->
+          <a href="/rawww/index.html">
+            <!-- 4. Dynamic root path injection for the header logo glyph -->
+            <img src="/rawww/assets/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+            RAWWW
+          </a>
+        </div>
+      </div>
+
+      <!-- Core site navigation links with injected paths -->
+      <nav class="site-nav">
+        <!-- 5. Dynamic root path injection for navigation mapping -->
+        <a href="/rawww/index.html" class="nav-link">Home</a>
+        <a href="/rawww/readme.html" class="nav-link">Readme</a>
+        <a href="/rawww/changelog.html" class="nav-link">Changelog</a>
+        <a href="/rawww/about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main class="content-container">
+      <!-- Native Markdown text output channel compiled by Pandoc -->
+      <div class="page-main-body-content">
+        <div class="page-main-body-content">
+        <h2 id="unreleased">[Unreleased]</h2>
+        <h2 id="section">[0.2.1] - 2026-07-24</h2>
+        <ul>
+        <li>added Config <code>#production?</code> and
+        <code>#site_root</code></li>
+        <li>optimized <code>build.rake</code> usign the methods
+        above</li>
+        </ul>
+        <h2 id="section-1">[0.2.0] - 2026-07-22</h2>
+        <ul>
+        <li>added <code>doc/*.md</code></li>
+        <li>moved <code>favicon.svg</code> and <code>og-card.png</code>
+        moved to <code>src/assets/</code>, simplyfying
+        <code>assets.rake</code></li>
+        <li>fixed <code>src/default.html</code> for using
+        <code>rawww.yml</code> settings</li>
+        <li>fixed <code>src/index</code> for providing relative
+        og-card.png path</li>
+        <li>added pragmatic caching
+        <ul>
+        <li>designed <code>Build::CacheManifest</code></li>
+        <li>added <code>src/sw.js</code> for managing</li>
+        <li>changed <code>build.rake</code> accordingly</li>
+        </ul></li>
+        <li>added <code>#compile_pandoc_extra_args</code> Pandoc
+        compiler (see <code>build.rake</code>)</li>
+        </ul>
+        <h2 id="unreleased---2026-07-19">[Unreleased] - 2026-07-19</h2>
+        <ul>
+        <li>sitemap generator moved to
+        <code>build/sitemap.rb</code></li>
+        <li>manifest page generator extracted into
+        <code>build/page.rb</code></li>
+        </ul>
+        <h2 id="section-2">[0.1.0] - 2026-07-18</h2>
+        <ul>
+        <li>changed <code>src/about.md</code> for prividing banner</li>
+        <li>designed <code>rakelib/manifest.rake</code> demo for copying
+        README and CHANGELOG; accordingly updated navigagion in
+        <code>src/templates/default.html</code></li>
+        </ul>
+        <h2 id="unrelesed---2026-07-16">[Unrelesed] - 2026-07-16</h2>
+        <ul>
+        <li>added <code>src/og-card.svg</code></li>
+        <li>fixed “Untitled |” thing</li>
+        <li>cleaned extra <code>/src/*.svg</code></li>
+        <li>copied <code>svg</code> into <code>/assets</code></li>
+        </ul>
+        <h2 id="unreleased---2026-07-15">[Unreleased] - 2026-07-15</h2>
+        <p>Initial release</p>
+        <pre><code>├── CHANGELOG.md
+├── compose.yaml
+├── copilot-prompt.md
+├── Dockerfile
+├── Gemfile
+├── lib
+│   ├── basic
+│   │   ├── alias_members.rb
+│   │   ├── callable.rb
+│   │   ├── cli_tool.rb
+│   │   └── configuration.rb
+│   ├── basic.rb
+│   ├── rawww
+│   │   ├── banner.rb
+│   │   ├── basic.rb
+│   │   ├── model
+│   │   │   ├── page.rb
+│   │   │   └── site.rb
+│   │   ├── model.rb
+│   │   ├── pandoc.rb
+│   │   └── version.rb
+│   └── rawww.rb
+├── PROMPT.md
+├── Rakefile
+├── rakelib
+│   ├── assets.rake
+│   ├── build.rake
+│   ├── deploy.rake
+│   ├── seo.rake
+│   └── serve.rake
+├── README.md
+├── src
+│   ├── 404.md
+│   ├── about.md
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── modules
+│   │   │   │   ├── about.css
+│   │   │   │   ├── base.css
+│   │   │   │   ├── content.css
+│   │   │   │   ├── error.css
+│   │   │   │   └── header.css
+│   │   │   └── style.css
+│   │   ├── images
+│   │   └── js
+│   ├── favicon.svg
+│   ├── favicon1.svg
+│   ├── index.md
+│   └── templates
+│       ├── analytics.html
+│       └── default.html
+└── www
+
+14 directories, 39 files</code></pre>
+        </div>
+      </div>
+
+      <!-- Pandoc native body injection channel -->
+      
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Nikolay Voynov. All rights reserved.</p>
+      <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 5px;">
+        Powered by Rake and Pandoc. Clean, minimal, raw web.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

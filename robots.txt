@@ -1,0 +1,5 @@
+# robots.txt for rawww static engine
+User-agent: *
+Allow: /
+
+Sitemap: https://nvoynov.github.io/sitemap.xml

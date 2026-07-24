@@ -1,0 +1,58 @@
+/* src/assets/css/modules/header.css */
+
+.site-header {
+  display: flex;
+  flex-direction: column; /* Stack logo and navigation vertically */
+  align-items: center;    /* Center horizontally */
+  text-align: center;
+  margin-top: 3.75rem;     /* 60px / 16 */
+  padding-bottom: 2.5rem;  /* 40px / 16 — Breathable space above the divider line */
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Scoped selector matching our structural brand title anchor */
+.site-title .site-title-text {
+  font-size: 1.35rem;     /* Slightly increased from 1.25rem for balanced weight */
+  font-weight: 300;       
+  letter-spacing: 0.22em; 
+  text-transform: uppercase;
+  margin: 0 0 1.875rem 0;  
+  line-height: 1;
+  display: inline-block;
+}
+
+.site-title a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #222222;
+  text-decoration: none;
+}
+
+/* Micro graphic styling for our custom embedded pixel matrix logo */
+.header-divider-icon {
+  height: 1.25rem;         /* 20px proportional matching to the title scale */
+  vertical-align: middle;
+  margin-right: 0.5rem;    /* Clean tracking gap before the text */
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;             /* 40px / 16 — Crisp horizontal menu gaps */
+  margin-top: 0.3125rem;   /* 5px / 16 */
+}
+
+.site-nav a {
+  font-size: 0.75rem;      /* 12px / 16 — Neat typographic scale for navigation links */
+  font-weight: 400;       
+  letter-spacing: 0.28em; 
+  text-transform: uppercase;
+  color: #444444;         /* Matches our system fallback color schema */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: #000000;
+}

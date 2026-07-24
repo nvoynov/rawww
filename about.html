@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Standard Primary SEO Layer -->
+  <title>About & Manifesto | RAWWW Engine</title>
+  
+  
+  <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
+  <link rel="canonical" href="https://nvoynov.github.io/rawww/about.html">  
+  
+  <!-- Open Graph / Facebook Production Layer -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nvoynov.github.io/rawww/about.html">
+  <meta property="og:title" content="About & Manifesto | RAWWW Engine">
+  <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
+  <!-- Clean absolute path pointing straight to the root production banner -->
+  <!-- <meta property="og:image" content="/rawww/og-card.svg"> -->
+  <meta property="og:image" content="/rawww/assets/og-card.png">
+
+  <!-- Branding Visual Identities Core Assets -->
+  <link rel="icon" type="image/svg+xml" href="/rawww/assets/favicon.svg">
+  <!-- 2. Dynamic root path injection for the master stylesheet -->
+  <link rel="stylesheet" href="/rawww/assets/css/style.css">
+</head>
+
+<body>
+  <div class="site-container">
+    <header class="site-header">
+      <div class="site-title">
+        <div class="site-title-text">
+          <!-- 3. Dynamic root path injection for the home link -->
+          <a href="/rawww/index.html">
+            <!-- 4. Dynamic root path injection for the header logo glyph -->
+            <img src="/rawww/assets/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+            RAWWW
+          </a>
+        </div>
+      </div>
+
+      <!-- Core site navigation links with injected paths -->
+      <nav class="site-nav">
+        <!-- 5. Dynamic root path injection for navigation mapping -->
+        <a href="/rawww/index.html" class="nav-link">Home</a>
+        <a href="/rawww/readme.html" class="nav-link">Readme</a>
+        <a href="/rawww/changelog.html" class="nav-link">Changelog</a>
+        <a href="/rawww/about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main class="content-container">
+      <!-- Native Markdown text output channel compiled by Pandoc -->
+      <div class="page-main-body-content">
+        <section id="rawww-manifesto" class="about-page-container">
+        <h1>RAWWW Manifesto</h1>
+        <blockquote>
+        <p>“The web is bloated. Let’s make it raw again.”</p>
+        </blockquote>
+        <p><strong>RAWWW</strong> is a philosophical pushback against
+        the modern web infrastructure. We believe that building a fast,
+        accessible, and beautiful website should not require a 500MB
+        <code>node_modules</code> folder, complex hydration strategies,
+        or fragile JavaScript compilation steps.</p>
+        <p>We build websites like we shoot photographs: in <strong>RAW
+        format</strong>. We keep the raw data clean, unmodified, and
+        honest, compiling it directly into the final presentation
+        without unnecessary compression of thought.</p>
+        <h2 id="core-principles">Core Principles</h2>
+        <ol type="1">
+        <li><strong>Content First</strong>: Your site exists to deliver
+        text, images, and data. Everything else is secondary. Pandoc
+        Markdown keeps your core content portable, indestructible, and
+        human-readable.</li>
+        <li><strong>Predictable Automation</strong>: Heavy frameworks
+        abstract too much. We use Ruby and Rake because they are
+        transparent, fast, and time-tested. One file, clear rules,
+        instant execution.</li>
+        <li><strong>Zero JavaScript Overhead</strong>: The fastest
+        script is the one that never loads. Interactions should rely on
+        modern CSS. JavaScript is treated as a progressive enhancement,
+        never a dependency.</li>
+        <li><strong>Environment Isolation</strong>: No more “it works on
+        my machine.” A single container file covers your complete
+        toolchain—Ruby, Rake, and Pandoc. Build locally, run
+        anywhere.</li>
+        </ol>
+        <h2 id="the-toolchain">The Toolchain</h2>
+        <p>This starter kit is deliberately minimal, utilizing tools
+        that built the modern internet and continue to outlast temporary
+        tech trends:</p>
+        <ul>
+        <li><strong>Pandoc</strong>: The ultimate document converter,
+        giving you unparalleled Markdown power.</li>
+        <li><strong>Ruby &amp; Rake</strong>: Elegant scripting and
+        clean task management for asset pipeline orchestration.</li>
+        <li><strong>Docker/Podman</strong>: Production-ready environment
+        immutability.</li>
+        </ul>
+        <hr />
+        <p><em>This site was built from a raw state. Feel free to delete
+        this manifesto, replace the branding, and start writing your own
+        story.</em></p>
+        </section>
+      </div>
+
+      <!-- Pandoc native body injection channel -->
+      
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Nikolay Voynov. All rights reserved.</p>
+      <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 5px;">
+        Powered by Rake and Pandoc. Clean, minimal, raw web.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

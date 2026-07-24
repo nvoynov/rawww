@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Standard Primary SEO Layer -->
+  <title>README | RAWWW Engine</title>
+  
+  
+  <!-- Absolute Canonical Anchor: Automated by Rake and calculated per page model -->
+  <link rel="canonical" href="https://nvoynov.github.io/rawww/readme.html">  
+  
+  <!-- Open Graph / Facebook Production Layer -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nvoynov.github.io/rawww/readme.html">
+  <meta property="og:title" content="README | RAWWW Engine">
+  <meta property="og:description" content="Raw Markdown to WWW. A minimalist, high-utility static website engine driven by Ruby, Rake, and Pandoc.">
+  <!-- Clean absolute path pointing straight to the root production banner -->
+  <!-- <meta property="og:image" content="/rawww/og-card.svg"> -->
+  <meta property="og:image" content="/rawww/assets/og-card.png">
+
+  <!-- Branding Visual Identities Core Assets -->
+  <link rel="icon" type="image/svg+xml" href="/rawww/assets/favicon.svg">
+  <!-- 2. Dynamic root path injection for the master stylesheet -->
+  <link rel="stylesheet" href="/rawww/assets/css/style.css">
+</head>
+
+<body>
+  <div class="site-container">
+    <header class="site-header">
+      <div class="site-title">
+        <div class="site-title-text">
+          <!-- 3. Dynamic root path injection for the home link -->
+          <a href="/rawww/index.html">
+            <!-- 4. Dynamic root path injection for the header logo glyph -->
+            <img src="/rawww/assets/favicon.svg" class="header-divider-icon" alt="RAWWW Logo" style="height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;" />
+            RAWWW
+          </a>
+        </div>
+      </div>
+
+      <!-- Core site navigation links with injected paths -->
+      <nav class="site-nav">
+        <!-- 5. Dynamic root path injection for navigation mapping -->
+        <a href="/rawww/index.html" class="nav-link">Home</a>
+        <a href="/rawww/readme.html" class="nav-link">Readme</a>
+        <a href="/rawww/changelog.html" class="nav-link">Changelog</a>
+        <a href="/rawww/about.html" class="nav-link">About</a>
+      </nav>
+    </header>
+
+    <main class="content-container">
+      <!-- Native Markdown text output channel compiled by Pandoc -->
+      <div class="page-main-body-content">
+        <section id="rawww" class="page-main-body-content">
+        <h1>RAWWW</h1>
+        <blockquote>
+        <p>Raw Markdown to WWW. Driven by Rake and Pandoc.</p>
+        <p><strong>Project Origin</strong></p>
+        <p>This starter template is the refined distillation of a
+        month-long architectural journey designing a custom photography
+        web gallery. The codebase successfully evolved from a rigid
+        Jekyll setup into a lightweight, high-utility, and fully
+        transparent compiler powered by Ruby, Rake, and Pandoc.
+        <strong>RAWWW</strong> preserves this foundation as a
+        production-ready springboard for future static web craft.</p>
+        </blockquote>
+        <p>A minimalist, high-utility static website starter kit
+        designed for speed, clean code, and zero JS overhead. Write raw
+        Pandoc Markdown, orchestrate with Rake, and deploy anywhere.</p>
+        <h2 id="features">Features</h2>
+        <ul>
+        <li><strong>Pure Pandoc</strong>: Compile rich Markdown directly
+        to clean HTML.</li>
+        <li><strong>Rake Automation</strong>: Build, serve, and deploy
+        using simple Ruby scripts.</li>
+        <li><strong>Docker Ready</strong>: Pre-configured environment
+        for isolated development via Docker or Podman.</li>
+        <li><strong>Clean Architecture</strong>: Minimal assets, modular
+        CSS, and structured folders.</li>
+        </ul>
+        <h2 id="quick-start">Quick Start</h2>
+        <h3 id="fork-and-clone">1. Fork and Clone</h3>
+        <p>To be able to deploy your site and push changes, you need
+        your own copy of the repository.</p>
+        <ol type="1">
+        <li>Click the <strong>Fork</strong> button at the top right of
+        this repository page to copy it to your GitHub account.</li>
+        <li>Clone your newly forked repository (replace
+        <code>your-username</code> with your actual GitHub
+        username):</li>
+        </ol>
+        <div class="sourceCode" id="cb1"><pre
+        class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> rawww</span></code></pre></div>
+        <blockquote>
+        <p><strong>Alternative</strong>: If this repository is
+        configured as a template, you can simply click the green
+        <strong>“Use this template”</strong> button to create a fresh,
+        clean repository based on <code>rawww</code>.</p>
+        </blockquote>
+        <h3 id="run-with-docker-podman">2. Run with Docker / Podman</h3>
+        <p>Build the container image:</p>
+        <div class="sourceCode" id="cb2"><pre
+        class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">podman</span> build <span class="at">-t</span> rawww-site .</span></code></pre></div>
+        <p>Start the local development server with live folder
+        mounting:</p>
+        <div class="sourceCode" id="cb3"><pre
+        class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">podman</span> run <span class="at">-it</span> <span class="at">--rm</span> <span class="at">-p</span> 8000:8000 <span class="at">-v</span> .:/app rawww-site rake serve</span></code></pre></div>
+        <p>Your site will be live at
+        <code>http://localhost:8000</code>.</p>
+        <h3 id="local-automation-alternative">3. Local Automation
+        (Alternative)</h3>
+        <p>If you have Ruby, Pandoc, and Rake installed locally on your
+        system, just use the CLI:</p>
+        <div class="sourceCode" id="cb4"><pre
+        class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rake</span> <span class="at">-T</span>      <span class="co"># List all available automation tasks</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rake</span> build   <span class="co"># Compile raw content to production-ready HTML</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">rake</span> serve   <span class="co"># Launch a lightweight local preview server</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">rake</span> push    <span class="co"># Deploy the compiled static site to GitHub Pages</span></span></code></pre></div>
+        <h2 id="project-structure">Project Structure</h2>
+        <ul>
+        <li><code>/src</code> — Your raw content (Markdown, layout
+        templates, modular CSS, and raw JS).</li>
+        <li><code>/www</code> — The generated, production-ready static
+        website (ignored by git).</li>
+        <li><code>/rakelib</code> — Modular Rake tasks for build
+        orchestration and deployments.</li>
+        <li><code>/lib</code> — Custom Ruby automation logic and helper
+        scripts.</li>
+        </ul>
+        <h2 id="beyond-the-basics">Beyond the Basics</h2>
+        <p>When your project grows beyond simple static pages, you can
+        easily extend <code>rawww</code>:</p>
+        <ul>
+        <li><strong>Custom Tasks</strong>: Add new file or rule tasks in
+        <code>manifest.rake</code> to generate dynamic content
+        maps.</li>
+        <li><strong>Asset Optimization</strong>: Integrate custom
+        scripts to copy, compress, and optimize media folders (like
+        photography assets) directly into the <code>:build</code> task
+        chain.</li>
+        <li><strong>AI Copilot</strong>: Use the pre-configured Gemini
+        prompt template located in
+        <code>.github/copilot-prompt.md</code> to teach any LLM your
+        exact automation workflow for quick feature expansion.</li>
+        </ul>
+        <h2 id="advanced-architecture-layout-features">Advanced
+        Architecture &amp; Layout Features</h2>
+        <p><code>rawww</code> leverages custom object-oriented Ruby 3.4
+        models combined with Pandoc’s native power to give you flexible
+        layout control directly inside your Markdown files.</p>
+        <h3 id="dynamic-layout-switching">1. Dynamic Layout
+        Switching</h3>
+        <p>By default, pages compile using
+        <code>src/templates/default.html</code>. You can create any
+        alternative layout file inside <code>src/templates/</code>
+        (e.g., <code>gallery.html</code>) and mount it seamlessly via
+        Front Matter:</p>
+        <div class="sourceCode" id="cb5"><pre
+        class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My Photography Work</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span><span class="kw">:</span><span class="at"> gallery</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+        <h3 id="url-slug-overriding">2. URL Slug Overriding</h3>
+        <p>The engine reads file boundaries and automatically generates
+        clean URL addresses. If you want to force an explicit URL path
+        regardless of the original filename, use the <code>slug</code>
+        variable:</p>
+        <div class="sourceCode" id="cb6"><pre
+        class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Contact Information</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slug</span><span class="kw">:</span><span class="at"> get-in-touch</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+        <p><em>Result:</em> The file compiles cleanly straight to
+        <code>www/get-in-touch.html</code> and hooks into the automated
+        <code>sitemap.xml</code> with zero configuration.</p>
+        <h3 id="modular-partials-injection-e.g.-google-analytics">3.
+        Modular Partials Injection (e.g., Google Analytics)</h3>
+        <p>To maintain complete control over code cleanliness, you can
+        isolate tracking pixels, scripts, or comments into dedicated
+        HTML partials inside <code>src/templates/</code> (e.g.,
+        <code>analytics.html</code>). Inject them only into pages that
+        require monitoring using the <code>include-before</code>
+        hook:</p>
+        <div class="sourceCode" id="cb7"><pre
+        class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Welcome to RAWWW</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">slug</span><span class="kw">:</span><span class="at"> home</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">include-before</span><span class="kw">:</span><span class="at"> src/templates/analytics.html</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">:</span><span class="fu">:</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="at">.page-main-body-content</span><span class="kw">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Raw Web Node</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">This specific page is now dynamically rendering your tracking layer, while other nodes remain completely clean.</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">:</span><span class="fu">:</span><span class="kw">:</span></span></code></pre></div>
+        </section>
+      </div>
+
+      <!-- Pandoc native body injection channel -->
+      
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Nikolay Voynov. All rights reserved.</p>
+      <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 5px;">
+        Powered by Rake and Pandoc. Clean, minimal, raw web.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
