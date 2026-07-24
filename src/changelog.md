@@ -7,11 +7,15 @@ layout: default
 
 ## [Unreleased]
 
-## [Unreleased] - 2026-07-22
+- added Config `#production?` and `#site_root`
+- optimized `build.rake` usign the methodds above
+
+## [0.2.0] - 2026-07-22
 
 - added `doc/*.md`
 - moved `favicon.svg` and `og-card.png` moved to `src/assets/`, simplyfying `assets.rake` 
 - fixed `src/default.html` for using `rawww.yml` settings
+- fixed `src/index` for providing relative og-card.png path
 - added pragmatic caching
   - designed `Build::CacheManifest`
   - added `src/sw.js` for managing

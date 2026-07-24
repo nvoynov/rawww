@@ -26,5 +26,13 @@ module Rawww
   class Config < ::Basic::Configuration
     # Automatically manages config initialization mapping onto 'rawww.yml'
     manage ConfigSchema
+
+    def production?
+      @poduction ||= ENV['RAWWW_PRODUCTION'] == 'true'
+    end
+
+    def site_root
+      @site_root ||= production? ? production_root_path : root_path
+    end      
   end
 end
