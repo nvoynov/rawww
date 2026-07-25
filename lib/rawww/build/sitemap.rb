@@ -9,16 +9,22 @@ module Rawww
       # @param site [Model::Site]
       # @return [String] sitemap xml content
       def call(site)
+
+        base_domain = config.site_url.chomp('/')
+        
         xml_content = []
         xml_content << '<?xml version="1.0" encoding="UTF-8"?>'
         xml_content << '<urlset xmlns="http://sitemaps.org">'
 
         site.pages.each do |page|
-          # Handle special mapping for the main index page
-          page_url = page.slug == "index" ? "#{config.site_url}/" : "#{config.site_url}/#{page.slug}.html"
-      
+          page_path = "#{config.site_root}/"
+          destination_path = page.destination_path
+          page_path << "#{destination_path.gsub(%r{#{Rawww::PUBLIC_DIR}/}, '')}" \
+            if page.slug != 'index'
+          calculated_canonical = "#{base_domain}#{page_path}"
+          
           xml_content << '  <url>'
-          xml_content << "    <loc>#{page_url}</loc>"
+          xml_content << "    <loc>#{calculated_canonical}</loc>"
           xml_content << "    <lastmod>#{page.date.strftime('%Y-%m-%d')}</lastmod>"
           xml_content << "    <changefreq>#{page.change_frequency}</changefreq>"
           xml_content << '  </url>'
