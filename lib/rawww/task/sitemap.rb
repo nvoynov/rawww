@@ -1,25 +1,22 @@
 require_relative 'base'
 
 module Rawww
-  module Build
+  module Task
 
-    # Sitemap.xml Builder
+    # Sitemap.xml generator
     class Sitemap < Base
-
-      # @param site [Model::Site]
-      # @return [String] sitemap xml content
-      def call(site)
-
+      def call
         base_domain = config.site_url.chomp('/')
         
         xml_content = []
         xml_content << '<?xml version="1.0" encoding="UTF-8"?>'
         xml_content << '<urlset xmlns="http://sitemaps.org">'
 
+        site = SiteModel.new
         site.pages.each do |page|
           page_path = "#{config.site_root}/"
           destination_path = page.destination_path
-          page_path << "#{destination_path.gsub(%r{#{Rawww::PUBLIC_DIR}/}, '')}" \
+          page_path << "#{destination_path.gsub(%r{#{config.www}/}, '')}" \
             if page.slug != 'index'
           calculated_canonical = "#{base_domain}#{page_path}"
           
@@ -32,6 +29,9 @@ module Rawww
 
         xml_content << '</urlset>'
         xml_content.join("\n")
+
+        path = File.join(config.www, 'sitemap.xml')
+        File.write(path, xml_content)
       end
     end    
   end

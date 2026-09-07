@@ -1,24 +1,18 @@
 # lib/rawww/models/site.rb
 
+require_relative '../config'
+require_relative 'page'
+
 module Rawww
   module Model
     # Represents the entire website content structure.
     # Scans the source directory and aggregates individual Page models.
     class Site
-      attr_reader :source_dir
+      attr_reader :pages
 
-      # @param source_dir [String] the root path containing raw markdown content
-      def initialize(source_dir = 'src')
-        @source_dir = source_dir
-      end
-
-      # Scans the directory and maps every Markdown file to a PageModel instance.
-      # Utilizes Ruby 3.4 implicit 'it' block parameter for clean transformation.
-      # @return [Array<Rawww::PageModel>] collection of site pages
-      def pages
-        @pages ||= Dir
-          .glob(File.join(@source_dir, '**/*.md'))
-          .map{ Rawww::PageModel.new(it) }
+      def initialize
+        ptrn = File.join(Config.instance.raw, '**/*.md')
+        @pages = Dir.glob(ptrn).map{ Page.new(it) }
       end
 
       # Helper method to find a specific page by its source path.

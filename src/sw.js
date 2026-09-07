@@ -15,8 +15,8 @@ const getAbsPath = (file) => `${BASE_SCOPE.replace(/\/$/, '')}/${file.replace(/^
 self.addEventListener('install', (event) => {
   const assetsToPrecache = [
     getAbsPath('/'),
+    getAbsPath('/cachemap.json'),
     getAbsPath('/index.html'),
-    getAbsPath('/cache_manifest.json'),
     getAbsPath('/assets/css/style.css')
   ];
 
@@ -33,7 +33,7 @@ self.addEventListener('activate', (event) => {
     // Force immediate initialization of the images cache database context
     caches.open(IMAGE_CACHE_NAME).then((imageCache) => {
       
-      return fetch(getAbsPath('/cache_manifest.json'), { cache: 'no-store' })
+      return fetch(getAbsPath('/cachemap.json'), { cache: 'no-store' })
         .then((response) => {
           if (!response.ok) throw new Error(`Manifest fetch failed with status: ${response.status}`);
           return response.json();

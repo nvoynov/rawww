@@ -4,7 +4,7 @@ require 'fileutils'
 require './lib/rawww'
 
 namespace :site do
-  desc "Deploy the compiled website to GitHub Pages"
+  # desc "Deploy the compiled website to GitHub Pages"
   task :push do
     puts Rawww::BANNER
     puts Rawww.environment_info
@@ -55,7 +55,7 @@ namespace :site do
 end
 
 # Intercept the global shortcut call
-task :push do
+task :deploy do
   # 1. Lock the environment into production state
   ENV['RAWWW_PRODUCTION'] = 'true'
   puts "  » Production environment state locked."
@@ -64,10 +64,14 @@ task :push do
   puts "  » Flushing local compilation caches..."
   Rake::Task['clean'].invoke
   
-  # 3. Trigger a completely fresh, clean production build execution
+  # 3. Build pages under RAWWW_PRODUCTION=true
+  puts "  » Build pages..."
+  Rake::Task['pages'].invoke
+  
+  # 4. Trigger a completely fresh, clean production build execution
   puts "  » Triggering fresh production build..."
   Rake::Task['build'].invoke
   
-  # 4. Invoke the real deploy mechanism
+  # 5. Invoke the real deploy mechanism
   Rake::Task['site:push'].invoke
 end

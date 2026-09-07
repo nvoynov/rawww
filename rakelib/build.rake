@@ -1,107 +1,120 @@
-# rakelib/build.rake
+require 'pathname'
+require 'rake/clean'
+require_relative 'context'
 
-require 'fileutils'
-require './lib/rawww'
+# rake clean
+CLEAN.include(
+  File.join(WWW, 'sitemap.xml'),
+  File.join(WWW, 'robots.txt'),
+  File.join(WWW, 'cachemap.json'),
+  File.join(WWW, 'sw.js'),
+  SiteModel.new.pages.map(&:destination_path)
+)
 
+# rake clobber
+CLOBBER.include(WWW)
+
+# BIG BUILD RAKE
 namespace :site do
-  COMPILER = Rawww::Pandoc
-  TEMPLATES_DIR = 'src/templates'
 
-  # We wrap targets into a dynamic helper method to prevent early evaluation during Rake load phase
-  def self.targets_map
-    site = Rawww::SiteModel.new('src')
-    site.pages.each_with_object({}) do |page, hash|
-      hash[page.destination_path] = page
-    end
+######## Copy/Compile Assets
+
+  RAW_ASSETS = File.join(RAW, 'assets')
+  WWW_ASSETS = File.join(WWW, 'assets')
+
+  STYLE_ASSETS = FileList[File.join(RAW_ASSETS, '**/*.css')]
+  WWW_CSS_DIR  = File.join(WWW_ASSETS, 'css')  
+  WWW_JS_DIR   = File.join(WWW_ASSETS, 'js')
+  WWW_STYLE    = File.join(WWW_CSS_DIR, 'style.css')
+  ASSET_FILES  = FileList[File.join(RAW_ASSETS, '**/*.*')].reject{ File.directory?(_1) }
+  WWW_OTHERS   = (ASSET_FILES - STYLE_ASSETS).pathmap("%{^#{RAW}/,#{WWW}/}p")
+
+  directory WWW_ASSETS
+  directory WWW_JS_DIR
+  directory WWW_CSS_DIR
+
+  file WWW_STYLE => [WWW_ASSETS, WWW_CSS_DIR, *STYLE_ASSETS] do
+    StyleTask.call
+    puts "  » assets: compiled #{WWW_STYLE}"
   end
 
-  # Helper method to dry up and orchestrate native Pandoc include-before-body injections
-  def compile_pandoc_extra_args(target_src)
-    extra_args = []
-
-    # when you need to provide some extra inclusions based on target
-    # analytics_part = "#{SRC_DIR}/templates/analytics_fragment.html"
-    # extra_args << "--include-before-body=#{analytics_part}" \
-    #   if File.exist?(analytics_part)
-    extra_args
+  # just copy other than styles
+  rule(%r{^#{WWW_ASSETS}/(?!css/|.+/css/).+$}) do |t|
+    source = t.name.sub(/^#{WWW_ASSETS}/, RAW_ASSETS)
+    File.dirname(t.name).then{ mkdir_p it unless Dir.exist?(it) }
+    cp source, t.name, verbose: false
+    puts "  » assets: copied #{source} -> #{t.name}"
   end
 
-  desc "Compile all Markdown pages into production HTML website"
-  task :compile => 'manifest:sync' do
-    # 1. Evaluate the pages map FRESH, after manifest:sync has completed its execution
-    pages_map = targets_map
-    config = Rawww::Config.instance
-    
-    # 2. Iterate through the dynamically discovered pages and compile them
-    pages_map.each do |destination_path, page|
-      layout_name = page.metadata[:layout] || 'default'
-      template_path = File.join(TEMPLATES_DIR, "#{layout_name}.html")
+  desc 'Copy assets'
+  task :assets => ([WWW_STYLE] + WWW_OTHERS) #  [WWW_STYLE, *WWW_OTHERS.to_a]
 
-      # Track timestamps manually to preserve Rake's incremental build speed
-      # Rebuild only if target is missing, or if source/template are newer
-      should_rebuild =
-        !File.exist?(destination_path) || 
-        File.mtime(page.source_path) > File.mtime(destination_path) ||
-        File.mtime(template_path) > File.mtime(destination_path)
+######## Compile Markdown pages
 
-      if should_rebuild
-        FileUtils.mkdir_p(File.dirname(destination_path))
+  COMPILER = PageTask.new
 
-        base_domain = config.site_url.chomp('/')
-        # page_path = page.slug == 'index' ? "#{current_root}/" : "#{current_root}/#{page.slug}.html"
-        page_path = "#{config.site_root}/"
-        page_path << "#{destination_path.gsub(%r{#{Rawww::PUBLIC_DIR}/}, '')}" \
-          if page.slug != 'index'
+  PAGES = SiteModel.new.pages
+    .map{ [_1.destination_path, _1.source_path] }
+    .to_h
+  
+  # NOTE: this fits the situattion when all pages prepared beforehed
+  #   When you generate pages depend on site_root, you need to change
+  #   it for straight approach Site.new.pages.each{ COMPILER.call(it) }
+  desc 'Compile markdown pages'
+  task :pages => PAGES.keys
 
-        calculated_canonical = "#{base_domain}#{page_path}"
-        extra_args = compile_pandoc_extra_args(destination_path)
-
-        COMPILER.call(
-          source: page.source_path,
-          template: template_path,
-          destination: destination_path,
-          variables: page.metadata.merge(
-            'root_path' => config.site_root,
-            'canonical_url' => calculated_canonical,
-            'site_title' => config.title,
-            'author' => config.author
-          ),
-          extra_arguments: extra_args
-        )
-        puts "  » compile: #{page.source_path} -> /#{page.slug}.html [layout: #{layout_name}]"
-      end
-    end
+  rule ".html" => ->(f){ PAGES[f] } do |t|
+    COMPILER.(t.source)
+    puts "  » pages: compiled #{t.source} -> #{t.name}"
   end
 
-  CACHE_MANIFEST = File.join(Rawww::PUBLIC_DIR, 'cache_manifest.json')
-  desc "Build cache-manifest.json"
-  file CACHE_MANIFEST do |t|
-    raw = Rawww::BuildCacheManifest.()
-    File.write(t.name, raw)
-    puts "  » cache mainifest: -> #{t.name}"
+######## Site index files
+
+  # Исправлена опечатка в stie_url -> site_url
+  URL = CONFIG.site_url 
+  SITEMAP = File.join(WWW, 'sitemap.xml')
+
+  desc "Build sitemap.xml"
+  file SITEMAP => PAGES.keys do |t|
+    SitemapTask.call
+    puts "  » index: dump /#{t.name}"
   end
 
-  SERVICE_WORKER_SRC = File.join('src', 'sw.js')
-  SERVICE_WORKER = File.join(Rawww::PUBLIC_DIR, 'sw.js')
-  file SERVICE_WORKER do |t|
-    FileUtils.cp SERVICE_WORKER_SRC, SERVICE_WORKER
+  ROBOTS = File.join(WWW, 'robots.txt')
+
+  desc "Build robots.txt"
+  file ROBOTS do |t|
+    content = <<~TEXT
+      # robots.txt for rawww static engine
+      User-agent: *
+      Allow: /
+
+      Sitemap: #{URL}/sitemap.xml
+    TEXT
+
+    File.write(t.name, content)
+    puts "  » index: dump /#{t.name}"
   end
 
-  task :build => [:compile, CACHE_MANIFEST, SERVICE_WORKER]
-
-  desc "Clean compiled site pages"
-  task :clean do
-    # Dynamically find files to clean safely
-    targets = targets_map.keys + [CACHE_MANIFEST, SERVICE_WORKER] 
-    targets.each do |file|
-      next unless File.exist?(file)
-
-      File.delete(file)
-      puts "  » deleted: #{file}"
-    end
+  CACHEMAP = File.join(WWW, 'cachemap.json')
+  desc "Build cachemap.json"
+  file CACHEMAP do |t|
+    CachemapTask.call
+    puts "  » index: dump /#{t.name}"
   end
+
+  RAW_SERVICE = File.join(RAW, 'sw.js')
+  SERVICE = File.join(WWW, 'sw.js')
+  
+  desc "Copy sw.js"
+  file SERVICE do
+    cp RAW_SERVICE, SERVICE, verbose: false
+    puts "  » index: copy /#{SERVICE}"
+  end
+
+  desc 'Build site index'
+  task :index => [SITEMAP, ROBOTS, CACHEMAP, SERVICE]
 end
 
-# Reset top-level build chain pipelines
-task :build => ['css:build', 'assets:copy', 'site:build',  'seo:generate']
-task :clean => ['site:clean', 'manifest:clean', 'assets:clean', 'seo:clean', 'css:clean']
+desc "Build site"
+task :build => %w[ site:assets site:pages site:index ]

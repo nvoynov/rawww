@@ -27,6 +27,14 @@ module Rawww
     # Automatically manages config initialization mapping onto 'rawww.yml'
     manage ConfigSchema
 
+    attr_reader :www, :raw
+
+    def initialize
+      @www = 'www'
+      @raw = 'src'
+      super
+    end
+    
     def production?
       @poduction ||= ENV['RAWWW_PRODUCTION'] == 'true'
     end

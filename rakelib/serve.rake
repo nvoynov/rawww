@@ -1,10 +1,8 @@
-# rakelib/serve.rake
-require './lib/rawww'
+require_relative 'context'
 
 namespace :server do
   PORT = 8000
 
-  desc "Launch a lightweight local preview server for the compiled website"
   task :run => :build do
     puts Rawww::BANNER
     puts Rawww.environment_info
@@ -14,7 +12,7 @@ namespace :server do
     puts "  ─────────────────────────────────"
     
     # Launch Ruby's built-in light HTTP server pointing to the www directory
-    cmd = "ruby -run -e httpd #{Rawww::PUBLIC_DIR} -p #{PORT}"
+    cmd = "ruby -run -e httpd #{WWW} -p #{PORT}"
     
     # Handle graceful exit on Ctrl+C inside terminal or containers
     begin
@@ -27,4 +25,4 @@ end
 
 # Expose a clean, punchy top-level shortcut task
 desc "Serve the compiled production-ready website locally"
-task :serve => 'server:run'
+task :serve => %w[clean pages build server:run]

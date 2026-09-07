@@ -7,11 +7,13 @@ layout: default
 
 ## [Unreleased]
 
-TODO:
+## [0.3.0] - 2026-09-07
 
-- [ ] design `js.rake` to minificate JSs
-- [ ] change JSON.pretty_generate for cache manifests
-
+- `Rawww::Build` redesigned into `Rawww::Task` (stiemap, style, cachemap, page)
+- redesigned `rakelib` for
+  - new `build.rake` for assets, pages, and index
+  - added rake standard `clean` and `clobber`
+  - changed `serve` and `deploy` for triggering :clean, :pages, :build
 
 ## [0.2.3] - 2026-07-25
 
