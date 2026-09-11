@@ -23,6 +23,16 @@ namespace :server do
   end
 end
 
-# Expose a clean, punchy top-level shortcut task
 desc "Serve the compiled production-ready website locally"
-task :serve => %w[clean pages build server:run]
+task :serve do
+  puts "  » Flushing local compilation caches..."
+  Rake::Task['clean'].invoke
+
+  puts "  » Generating series markdown..."
+  Rake::Task['pages'].invoke
+
+  puts "  » Triggering development build..."
+  Rake::Task['build'].invoke
+
+  Rake::Task['server:run'].invoke
+end

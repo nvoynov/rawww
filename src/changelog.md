@@ -7,6 +7,11 @@ layout: default
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-09-11
+
+- fixed `StyleTask` for combining css files
+- fixed `serve.rake` for `#invoke` tasks
+
 ## [0.3.0] - 2026-09-07
 
 - `Rawww::Build` redesigned into `Rawww::Task` (stiemap, style, cachemap, page)

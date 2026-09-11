@@ -33,38 +33,34 @@ module Rawww
           .strip
       end
       
-      # Resolves @import instructions and merges target submodules
+      # Resolves @import instructions and merges target submodules recursively
       def combine(filepath)
         base_dir = File.dirname(filepath)
         combined = ""
     
+        unless File.exist?(filepath)
+          puts "  » css: Compile Error! Target file missing: #{filepath}"
+          return combined
+        end
+
         File.open(filepath, 'r') do |file|
           file.each_line do |line|
             next if line.strip.empty?
-            next if line.strip.start_with?('/*')
+            
+            if line =~ /^\s*@import\s+(?:url\()?['"]?([^'")\s?#]+)['"]?\)?\s*;/
+              module_rel_path = $1
+              module_full_path = File.expand_path(module_rel_path, base_dir)
 
-            # Guard if line is not an @import directive, buffer it and continue
-            unless line =~ /@import\s+(?:url\()?['"]?([^'")]+)['"]?\)?;/
+              combined << "/* Injected module: #{module_rel_path} */\n"
+              combined << combine(module_full_path) << "\n"
+            else
               combined << line
-              next
             end
-
-            # Process matching module reference
-            module_rel_path = $1
-            module_full_path = File.expand_path(module_rel_path, base_dir)
-
-            # Fallback safeguard check for physically missing submodules
-            unless File.exist?(module_full_path)
-              puts "  » css: Compile Error! Target module missing: #{module_full_path}"
-              next
-            end
-
-            combined << "/* Injected module: #{module_rel_path} */\n"
-            combined << File.read(module_full_path) << "\n"
           end
         end
         combined
       end
+      
     end
   end
 end
