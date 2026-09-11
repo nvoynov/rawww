@@ -38,7 +38,7 @@ module Rawww
       # Safely extracts Front Matter data block from the top of the file.
       # @return [Hash] containing parsed data like :title, :layout, and :slug
       def metadata
-        @metadata ||= parse_front_matter
+        @metadata ||= extract_metadata
       end
 
       # Returns the actual system modification time of the raw markdown file
@@ -62,34 +62,25 @@ module Rawww
 
       private
 
-      # A lightweight, zero-dependency parser for core document configuration.
-      def parse_front_matter
+      def extract_metadata
         content = File.read(@source_path)
         data = { layout: 'default', slug: nil }
-
+        
         if content =~ /\A---(.*?)---/m
           front_matter_block = $1
-
-          if (title_match = front_matter_block.match(/title:\s*(.*)/))
-            raw_title = title_match.captures.first
-            # data[:title] = raw_title ? raw_title.strip : 'Untitled'
-            data[:title] = raw_title if raw_title
-          end
-
-          if (layout_match = front_matter_block.match(/layout:\s*(.*)/))
-            raw_layout = layout_match.captures.first
-            data[:layout] = raw_layout ? raw_layout.strip : 'default'
-          end
-
-          # Support explicit custom slug overriding inside Front Matter
-          if (slug_match = front_matter_block.match(/slug:\s*(.*)/))
-            raw_slug = slug_match.captures.first
-            data[:slug] = raw_slug ? raw_slug.strip : nil
+          begin
+            parsed_yaml = YAML.load(front_matter_block) || {}
+            yaml_data = parsed_yaml.transform_keys(&:to_sym)
+            data.merge!(yaml_data)
+          rescue StandardError => e
+            puts "YAML parsing error in #{@source_path}: #{e.message}"
           end
         end
 
         data
       end
+
+
     end
   end
 end

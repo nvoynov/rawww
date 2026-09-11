@@ -7,10 +7,11 @@ layout: default
 
 ## [Unreleased]
 
-## [0.3.1] - 2026-09-11
+## [0.3.2] - 2026-09-11
 
 - fixed `StyleTask` for combining css files
 - fixed `serve.rake` for `#invoke` tasks
+- fixed `PageModel` metdata extraction
 
 ## [0.3.0] - 2026-09-07
 
